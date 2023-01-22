@@ -12,20 +12,21 @@ const Cart = () => {
 
     return (
         <div>
-            <Navbar/>
-            <h3>Cart</h3>
-            <div className="container" >
+
+
+            <div style={{ backgroundColor: 'lightgrey' }} className="container" >
+                <h3>Cart</h3>
                 {products.map((product) => (
-                    <div key={product.id} className="mt-4" id='cartitem' style={{border:"3px solid pink",borderRaduis:"9px"}}>
-                       <div id='cartimg'> 
-                         <img src={product.image} alt="" /> 
-                       </div>
-                       <div id='cartspec'>
-                        <h5>{product.title}</h5>
-                        <h5>{product.price}</h5>
-                        <button
-                            className="btn btn-danger"
-                            onClick={() => handleRemove(product.id)}> Remove </button>
+                    <div key={product.id} className="mt-4" id='cartitem' style={{ border: "3px solid pink", borderRaduis: "9px" }}>
+                        <div id='cartimg'>
+                            <img src={product.image} alt="" />
+                        </div>
+                        <div id='cartspec'>
+                            <h5>{product.title}</h5>
+                            <h5>{product.price}</h5>
+                            <button
+                                className="btn btn-danger"
+                                onClick={() => handleRemove(product.id)}> Remove </button>
                         </div>
                     </div>
                 ))}
