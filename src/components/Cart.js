@@ -16,6 +16,9 @@ const Cart = () => {
 
         <div>
             {
+                (!products && <h2>Please add some products to the cart</h2>)
+            }
+            {
                 (products && <div style={{ backgroundColor: 'lightgrey' }} className="container" >
                     <h3>Cart</h3>
                     {products.map((product) => (
