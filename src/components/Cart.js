@@ -8,11 +8,6 @@ const Cart = () => {
     const products = useSelector((state) => state.cart);
     const [cartData, setcartData] = useState();
 
-    useEffect(() => {
-        setcartData(JSON.parse(localStorage.getItem("cartitems")));
-    }, [products]);
-
-
     const handleRemove = (productId) => {
         dispatch(remove(productId));
     };
@@ -21,9 +16,9 @@ const Cart = () => {
 
         <div>
             {
-                (cartData && <div style={{ backgroundColor: 'lightgrey' }} className="container" >
+                (products && <div style={{ backgroundColor: 'lightgrey' }} className="container" >
                     <h3>Cart</h3>
-                    {cartData.map((product) => (
+                    {products.map((product) => (
                         <div key={product.id} className="mt-4" id='cartitem' style={{ border: "3px solid pink", borderRaduis: "9px" }}>
                             <div id='cartimg'>
                                 <img src={product.image} alt="" />
