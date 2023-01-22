@@ -6,9 +6,17 @@ import Addproduct from './components/Addproduct';
 import Cart from './components/Cart';
 import Details from './components/Details';
 import store from './assets/store';
+import { fetchproducts } from './features/productSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchproducts())
+  }, [])
   return (
     <>
       <div className="App">

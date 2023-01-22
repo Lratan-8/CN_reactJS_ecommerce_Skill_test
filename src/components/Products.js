@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { fetchproducts, sortAction, unsortAction } from '../features/productSlice'
+import { sortAction, unsortAction } from '../features/productSlice'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,18 +10,15 @@ import Loader from './Loader'
 
 function Products() {
 
-  useEffect(() => {
-    dispatch(fetchproducts())
-  }, [])
+
 
   const data = useSelector(state => state.myproduct)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  console.log(data)
 
   const [sort, Setsort] = useState("Sort by Price")
   const [unsort, Setunsort] = useState()
   const [val, SetVal] = useState(true)
-
-
 
 
   function handelsort() {

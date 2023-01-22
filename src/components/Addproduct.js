@@ -1,21 +1,23 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addproducts } from '../features/productSlice';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from './Navbar';
-
 function Addproduct() {
+
+  const data = useSelector(state => state.myproduct).products.length;
   const navigate = useNavigate();
-  const [values, setValues] = useState({ title: "", description: "", price: "", image: "" })
+  const [values, setValues] = useState({ title: "", description: "", price: "", image: "", id: "" })
   const { title, description, price, image } = values;
   const dispatch = useDispatch();
 
   const handelsubmit = (e) => {
     e.preventDefault();
+    let id = data + 1
+    setValues(values.id = id);
     dispatch(addproducts({ values }));
     setValues({ title: "", description: "", price: "", image: "" });
     toast.success("Product Added !", {

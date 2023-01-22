@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function Details() {
+
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useDispatch();

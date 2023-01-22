@@ -17,15 +17,16 @@ const initialState = {
 }
 
 // for fetching products trying axios here
-export const fetchproducts = createAsyncThunk('product/fetchproducts', () => {
-    return axios
-        .get(`https://my-json-server.typicode.com/Lratan-8/jsonDataForEcommerceApp/products`)
-        .then(resp => resp.data)
+export const fetchproducts = createAsyncThunk('product/fetchproducts', async () => {
+    const resp = await axios
+        .get(`https://my-json-server.typicode.com/Lratan-8/jsonDataForEcommerceApp/products`);
+    return resp.data;
 })
 
 // adding products to my list POST request
 export const addproducts = createAsyncThunk(
     'product/addproducts',
+
     async ({ values }) => {
         return fetch(`https://my-json-server.typicode.com/Lratan-8/jsonDataForEcommerceApp/products`, {
             method: 'POST',
@@ -34,12 +35,16 @@ export const addproducts = createAsyncThunk(
                 "Content-type": 'application/json'
             },
             body: JSON.stringify({
-                title: values.title,
-                description: values.description,
-                price: values.price,
-                image: values.image
+                "category": "miscellaneous",
+                "title": values.title,
+                "description": values.description,
+                "price": values.price,
+                "image": values.image,
+                "id": values.id
             })
-        }).then((resp => resp.json()))
+        }).then((resp => {
+            return resp.json()
+        }))
     }
 )
 
@@ -70,7 +75,8 @@ export const updateproduct = createAsyncThunk(
                 title: values.title,
                 price: values.price,
                 rating: values.rating,
-                image: values.image
+                image: values.image,
+                id: values.id
             })
         }).then((res) => res.json());
     }
@@ -120,8 +126,8 @@ const productSlice = createSlice({
         })
         builder.addCase(addproducts.fulfilled, (state, action) => {
             state.loading = false
-            action.payload.id = state.products.length + 1;
             state.products = [...state.products, action.payload];
+            console.log(state.products)
             state.error = ''
         })
         builder.addCase(addproducts.rejected, (state, action) => {
