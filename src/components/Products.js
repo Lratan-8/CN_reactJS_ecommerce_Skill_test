@@ -6,6 +6,7 @@ import { fetchproducts, sortAction, unsortAction } from '../features/productSlic
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SingleProduct from './SingleProduct';
+import Loader from './Loader'
 
 function Products() {
 
@@ -39,15 +40,17 @@ function Products() {
   return (
     <div className='container'>
       <ToastContainer />
-      <h2>List of Products</h2>
+      <h2>All Products</h2>
+
       <div id='btn'>
         <div>
+
           <button className='btn btn-light' onClick={handelsort}> {sort}</button>
           <button className='btn btn-transparent' onClick={handelunsort}> {unsort}</button>
         </div>
       </div>
 
-      {data.loading && <div>Loading...</div>}
+      {data.loading && <h2><Loader /></h2>}
       {!data.loading && data.error ? <div>Error: {data.error}</div> : null}
       {!data.loading && data.products.length ? (
         <ul style={{ padding: 0 }}>

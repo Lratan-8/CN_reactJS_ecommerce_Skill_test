@@ -5,6 +5,8 @@ import { deleteproduct, updateproduct } from "../features/productSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './singleProduct.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faPencil } from '@fortawesome/free-solid-svg-icons'
 
 function Product(props) {
   const dispatch = useDispatch();
@@ -63,13 +65,14 @@ function Product(props) {
           <div style={{ backgroundColor: 'lightgrey' }} id="items">
             <div id="itemimg">
               <img src={item.image} alt={title} />
+
             </div>
             <div id="specs">
               <h3>{item.title}</h3>
               <p>Price: {item.price} $</p>
               <p>Rating :{item.rating}</p>
               <Link to={`/details/${item.id}`}> Details </Link>
-              <button className="btn btn-info" onClick={() => Setedit(true)}>Edit</button>
+              <button className="btn btn-info" onClick={() => Setedit(true)}><FontAwesomeIcon icon={faPencil} /> Edit</button>
               <button className="btn btn-danger" onClick={() => handeldelete(item.id)}>Delete</button>
             </div>
           </div>
