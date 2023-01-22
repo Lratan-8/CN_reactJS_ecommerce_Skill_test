@@ -6,20 +6,23 @@ import { remove } from '../features/cartSlice';
 const Cart = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.cart);
-    const [cartData, setcartData] = useState();
-
+    const [Cart, setCart] = useState(products)
+    useEffect(() => {
+        setCart(products);
+        console.log(Cart)
+    })
     const handleRemove = (productId) => {
         dispatch(remove(productId));
     };
 
     return (
 
-        <div>
+        <div style={{ textAlign: 'center' }}>
             {
-                (!products && <h2>Please add some products to the cart</h2>)
+                Cart.length < 1 && <h2 style={{ marginTop: '200px', color: 'white' }}>Please add some products to the cart</h2>
             }
             {
-                (products && <div style={{ backgroundColor: 'lightgrey' }} className="container" >
+                Cart.length > 0 && <div style={{ backgroundColor: 'lightgrey' }} className="container" >
                     <h3>Cart</h3>
                     {products.map((product) => (
                         <div key={product.id} className="mt-4" id='cartitem' style={{ border: "3px solid pink", borderRaduis: "9px" }}>
@@ -35,7 +38,7 @@ const Cart = () => {
                             </div>
                         </div>
                     ))}
-                </div>)
+                </div>
             }
 
 
