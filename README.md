@@ -2,7 +2,7 @@
 
 ## Hosted Link : 
 
-# https://estore-reactjs-reduxtoolkit.herokuapp.com/
+# https://ecommerceskilltest.netlify.app/
 
 Functionalities : 
 - [x] Read product from server
